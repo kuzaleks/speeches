@@ -1,0 +1,12 @@
+
+# LaTeX
+*.toc
+*.log
+*.aux
+*.nav
+*.snm
+*.pdf
+*.out
+
+# emacs
+*~
