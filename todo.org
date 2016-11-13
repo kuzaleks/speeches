@@ -1,0 +1,7 @@
+
+* The course content
+** TODO Add lecture about signal segmentation
+** TODO Add lecture about Stochastic Signals 
+   The mean square of the stochastic signal spectr is one of the invariants
+   for the signal. That why Fourier Transform is a key method for 
+   feature extraction in ASR application
