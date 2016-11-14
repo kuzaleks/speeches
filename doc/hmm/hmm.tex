@@ -29,14 +29,15 @@
 \end{frame}
 
 \section{Содержание}
-
+%% Непосредственно речевого сигнала мы пока касаемся косвенно,
+%% поскольку, сначала необходимо представить мат. аппарат
 \begin{frame} \label{cont}
   \frametitle{\insertsection}
   \begin{enumerate}
     \item Понять проблему из-за которой представление сигнала как случайного вектора не достаточно \pause
     \item Понять что из себя представляют \alert{скрытые марковские модели (СММ)} в самом простом случае и из чего они состоят\pause
-    \item Познакомиться с тем как ими правильно пользоваться \pause
-      $3$ проблемы СММ
+    \item Познакомиться с тем как ими правильно пользоваться \\
+      \pause \alert{$3$ базовые проблемы СММ}
   \end{enumerate}
 \end{frame}
 
@@ -91,7 +92,7 @@
   \begin{itemize}
     \item $S_1, S_2, \ldots, S_N$
     \item $t_1, t_2, \ldots$
-    \item состояние в момень времени $t$: $q_t$
+    \item состояние в момент времени $t$: $q_t$
     \item полное вероятностное описание: $P(q_t = S_i | q_{t - 1} = S_j, q_{t - 2} = S_k, \ldots) = $ \pause $P(q_t = S_i | q_{t - 1} = S_j)$
       \\ для цепи Маркова
       %% Вероятность находится в том или ином состоянии в данный момент
@@ -140,14 +141,14 @@
       \node[state] (A) [above left = of C] {$S_1$};
       \node[state] (B) [above right = of C] {$S_2$};
       \path (A) edge [loop left] node {$0.4$} (A);
-      \path (B) edge [loop right] node {$0.4$} (B);
-      \path (C) edge [loop below] node {$0.4$} (C);
+      \path (B) edge [loop right] node {$0.6$} (B);
+      \path (C) edge [loop below] node {$0.8$} (C);
       \path (C) edge [bend left =25] node {$0.1$} (A);
       \path (A) edge [bend right = -15] node[below =0.15 cm] {$0.3$} (C);
       \path (A) edge [bend left =25] node[above] {$0.3$} (B);
       \path (B) edge [bend left =15] node[below =0.15 cm] {$0.2$} (A);
       \path (C) edge [bend left =15] node[below =0.15 cm] {$0.1$} (B);
-      \path (B) edge [bend right = -25] node[below =0.15 cm] {$0.8$} (C);
+      \path (B) edge [bend right = -25] node[below =0.15 cm] {$0.2$} (C);
     \end{tikzpicture}
   \end{figure}
 \end{frame}
@@ -163,7 +164,6 @@
     P(O | \text{Model}) & = & P(S_3, S_3, S_1, S_1, S_3, S_2, S_3 | \text{Model})\\
     & = & P(S_3) \cdot P(S_3|S_3) \cdot P(S_1|S_3) \cdot P(S_1|S_1) \cdot \\
     && P(S_3|S_1) \cdot P(S_2|S_3) \cdot P(S_3|P_2) \\
-    & = & \sum_{i = 1}^{n}\sum_{j = 1}^{n} h_{ij}(x_i - m_i)(x_j - m_j) \\
     & = & \pi_3 \cdot a_{33} \cdot a_{13} \cdot a_{11} \cdot a_{31}\cdot a_{23} \cdot a_{32}
   \end{eqnarray*}
   где $\pi_i = P(q_1 = S_i)$
@@ -203,7 +203,7 @@
         edge[bend left,above]     node{$P(H)$}         (A);
       \end{tikzpicture}
     \end{center}  
-  \end{figure}
+  \end{figure} \pause
   \begin{equation*}
     \begin{matrix}
       O & = & H & H & T & H & T & T & H & \ldots \\
@@ -228,15 +228,13 @@
         edge[bend left,above]     node{$1 - a_{22}$}         (A);
       \end{tikzpicture}
     \end{center}  
-  \end{figure}
-
+  \end{figure} \pause
   \begin{equation*}
     \begin{matrix}
       P(H) = P_1     & P(H) = P_2 \\
       P(T) = 1 - P_1 & P(T) = 1 - P_2
     \end{matrix}
-  \end{equation*}
-  
+  \end{equation*} \pause
   \begin{equation*}
     \begin{matrix}
       O & = & H & H & T & H & T & T & H & \ldots \\
@@ -265,11 +263,11 @@
       \path (C) edge [bend left =15] node[below =0.15 cm] {$a_{32}$} (B);
       \path (B) edge [bend right = -25] node[below =0.15 cm] {$a_{23}$} (C);
     \end{tikzpicture}
-    \end{figure}
-
+    \end{figure} \pause
     $P(H) = P_1 \qquad P(H) = P_2  \qquad P(H) = P_3 $ \\
     $ P(T) = 1 - P_1 \qquad P(T) = 1 - P_2 \qquad P(T) = 1 - P_3 $
-
+    \pause
+    
     $\displaystyle
     \begin{matrix}
       O & = & H & H & T & H & T & T & H & \ldots \\
@@ -279,7 +277,7 @@
 
 \end{frame}
 
-\subsection{Предварительные примеры. Урны с шарами}
+\subsection{Предварительные примеры. Карзины с шарами}
 
 \begin{frame} 
   \frametitle{\insertsection}
@@ -302,7 +300,7 @@
 
 \end{frame}
 
-\subsection{Ингридиенты}
+\subsection{Ингредиенты}
 
 \begin{frame} 
   \frametitle{\insertsection}
@@ -316,12 +314,12 @@
   \item Вероятность получить то или иное наблюдение при условии нахождения в определенном состоянии: \\
     $B = {b_i(k)}$, где $b_i(k) = P(O_t = v_k | q_t = S_i)$, \\
     $1 \le i \le N$, $1 \le k \le M$ \pause
-    \item Начальные вероятности: $\pi_i = P(p_1 = S_i)$, $1 \le i \le M$
+    \item Начальные вероятности: $\pi_i = P(q_1 = S_i)$, $1 \le i \le M$
   \end{enumerate}
 
   \pause
   \begin{equation*}
-    \lambda = {A, B, \pi}
+    \lambda = \{A, B, \pi\}  %% Остальное понятно из приложения
   \end{equation*}
 
 \end{frame}
@@ -335,8 +333,8 @@
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   \begin{itemize}
-  \item Дана последовательность наблюдений: $O = O_1, O_2, \ldots, O_T$
-  \item Есть модель $\lambda = \{A, B, \pi \}$
+  \item Дана последовательность наблюдений: $O = O_1, O_2, \ldots, O_T$ \pause
+  \item Есть модель $\lambda = \{A, B, \pi \}$ \pause
   \item Какова вероятность того что последовательность была сгенерирована данной моделью: \\
     $P(O | \lambda) = ?$
   \end{itemize}
@@ -348,12 +346,81 @@
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   \begin{itemize}
-  \item Дана последовательность наблюдений: $O = O_1, O_2, \ldots, O_T$
-  \item Есть модель $\lambda = \{A, B, \pi \}$
-  \item Какова последовательность состояний модели $Q = q_1, q_2, \ldots, q_T$, которая наилучшим (в некотром смысле) образом соответствует $O$?
+  \item Дана последовательность наблюдений: $O = O_1, O_2, \ldots, O_T$ \pause
+  \item Есть модель $\lambda = \{A, B, \pi \}$ \pause
+  \item Какова последовательность состояний модели $Q = q_1, q_2, \ldots, q_T$, которая наилучшим (в некотором смысле) образом соответствует $O$?
   \end{itemize}
 \end{frame}
 
+\subsection{Проблема 3}
+
+\begin{frame} 
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+  \item Дана последовательность наблюдений: $O = O_1, O_2, \ldots, O_T$ \pause
+  \item Каким образом выбрать значения параметров $\{A, B, \pi\}$ модели так что бы максимизировать значение $P(O|\lambda)$
+  \end{itemize}
+\end{frame}
+
+
+\section{Решение проблемы 1. Вероятность появления последовательности}
+\subsection{Первая попытка}
+
+\begin{frame} 
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+  \item Для одной конкретной последовательности $Q = q_1, q_2, \ldots, q_T$: \\ $\displaystyle P(O | Q, \lambda) = \prod_{t = 1}^{T} P(O_t | q_t, \lambda)$
+    \pause
+  \item $\displaystyle P(O | Q, \lambda) = b_{q_1}(O_1) \cdot b_{q_2}(O_2) \ldots b_{q_T}(O_T)$ \pause
+  \item $\displaystyle P(Q | \lambda) = \pi_{q_1} \cdot a_{q_1q_2} \cdot a_{q_2q_3} \ldots a_{q_{T - 1}q_T}$ \pause
+  \item $\displaystyle P(O, Q | \lambda) = P(Q | \lambda) \cdot P(O | Q, \lambda)$
+    \pause
+  \item Суммируем по всем возможным последовательностям: $\displaystyle P(O | \lambda) = \sum_{\forall Q} P(Q | \lambda) \cdot P(O | Q, \lambda)$
+  \end{itemize}
+\end{frame}
+
+\subsection{Первая попытка. Проблема со сложностью алгоритма}
+
+\begin{frame} 
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+  \item Количество всевозможных последовательностей $N^T$ \pause
+  \item Сложность алгоритма экспоненциальная: $O(N^T)$
+  \item При $N = 5$ и  $T = 100$, $5^{100} \approx 8^{69}$
+  \end{itemize}
+\end{frame}
+
+\subsection{Алгоритм прямого-обратного хода}
+
+\begin{frame} 
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+  \item Прямой ход: $ \alpha_t(i) = P(O_1 O_2 \ldots O_t, q_t = S_i | \lambda)$
+    \pause
+  \item Базис: $ \alpha_1(i) = \pi_i \cdot b_i(O_1), \qquad 1 \le i \le N$
+  \item Шаг индукции: $\displaystyle \alpha_{t + 1}(i) = \left [ \sum_{j = 1}^{N} \alpha_t(j) \cdot a_{ji} \right ] b_i(O_{t + 1})$
+    \pause
+  \item $\displaystyle P(O|\lambda) = \sum_{j = 1}^{N} \alpha_T(j)$
+  \end{itemize}
+\end{frame}
+
+
+\subsection{Алгоритм прямого-обратного хода. Сложность}
+
+\begin{frame} 
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+  \item Сложность алгоритма полиномиальная: $O(N^2T)$
+    \pause
+  \item При $N = 5$ и  $T = 100$, $5^2 \cdot 100 \approx 2.5^3$ \pause
+    \item Экономия примерно $66$ порядков
+  \end{itemize}
+\end{frame}
 
 \section{Наиболее вероятная последовательность состояний модели}
 
@@ -362,7 +429,6 @@
 
 \section{Виды скрытых марковских моделей}
 
-\section{Масштабиование значений вероятностей}
-
+\section{Масштабирование значений вероятностей}
 
 \end{document}
