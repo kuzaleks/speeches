@@ -9,9 +9,13 @@
 \usepackage{graphicx}
 \graphicspath{{images/}}
 
+\usepackage{amsmath}
+
 %% \usetheme{Berkeley}
 %% \usecolortheme{beaver}
 \definecolor {processblue}{cmyk}{0.96,0,0,0}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
 
 \usepackage{tikz}
 \usetikzlibrary {automata, arrows, positioning}
@@ -408,6 +412,19 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame} 
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+  \item Обратный ход: $ \beta_t(i) = P(O_{t + 1} O_{t + 2} \ldots O_T | q_t = S_i , \lambda)$
+    \pause
+  \item Базис: $ \beta_T(i) = 1, \qquad 1 \le i \le N$
+  \item Шаг индукции: $\displaystyle \beta_{t}(i) = \sum_{j = 1}^{N} a_{ij} b_{j}(O_{t + 1})\beta_{t + 1}(j)$ \\
+    $t = T - 1, T - 1, \ldots, 1, 1 \le i \le N$
+    \pause
+  \item $\displaystyle P(O|\lambda) = \sum_{j = 1}^{N} \alpha_T(j)$
+  \end{itemize}
+\end{frame}
 
 \subsection{Алгоритм прямого-обратного хода. Сложность}
 
@@ -422,7 +439,46 @@
   \end{itemize}
 \end{frame}
 
-\section{Наиболее вероятная последовательность состояний модели}
+\section{Решение проблемы 2. Наиболее вероятная последовательность состояний модели}
+\subsection{Индивидуально наиболее вероятные состояния}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  
+  \begin{itemize}
+  \item $\displaystyle \gamma_t(i) = P(q_t = S_i | O, \lambda)$ \pause
+  \item $\displaystyle \gamma_t(i) = \frac{\alpha_t(i) \beta_t(i)}{P(O | \lambda)} = \frac{\alpha_t(i) \beta_t(i)}{\sum_{i = 1}^{N} \alpha_t(i) \beta_t(i)}$
+    \pause
+  \item $\displaystyle \sum_{i = 1}^N \gamma_t(i) = 1$
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  
+  \begin{itemize}
+  \item $\displaystyle q_t = \argmax_{1 \le i \le N}{[\gamma_t(i)]}, \qquad 1 \le t \le T$
+    \item Решением является наиболее вероятное состояние в \alert{данный конкретный момент времени} без учета вероятности \alert{последовательности состояний}
+  \end{itemize}
+
+\end{frame}
+
+\subsection{Наиболее вероятная последовательность состояний}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  
+  \begin{itemize}
+  \item Наиболее вероятная последовательность $\displaystyle Q = q_1, q_2, \ldots, q_T$ \pause
+  \item соответствующая $O = O_1, O_2, \ldots, O_T$
+  \item $\displaystyle \delta_t(i) = \max_{q_1, q_2, \ldots, q_{t - 1}}{P[q_1\, q_2, \ldots, q_t = i, O_1\, O_2, \ldots, O_T|\lambda]}$
+  \end{itemize}
+
+\end{frame}
+
 
 \section{Оптимальные значения параметров модели}
 \subsection{Расчет значений параметров для случая непрерывного времени}
