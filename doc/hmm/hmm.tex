@@ -11,6 +11,11 @@
 
 \usepackage{amsmath}
 
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}%
+
 %% \usetheme{Berkeley}
 %% \usecolortheme{beaver}
 \definecolor {processblue}{cmyk}{0.96,0,0,0}
@@ -368,7 +373,7 @@
 \end{frame}
 
 
-\section{Решение проблемы 1. Вероятность появления последовательности}
+\section{Проблема 1. Вероятность появления последовательности}
 \subsection{Первая попытка}
 
 \begin{frame}
@@ -421,8 +426,6 @@
   \item Базис: $ \beta_T(i) = 1, \qquad 1 \le i \le N$
   \item Шаг индукции: $\displaystyle \beta_{t}(i) = \sum_{j = 1}^{N} a_{ij} b_{j}(O_{t + 1})\beta_{t + 1}(j)$ \\
     $t = T - 1, T - 2, \ldots, 1, 1 \le i \le N$
-    \pause
-  \item $\displaystyle P(O|\lambda) = \sum_{j = 1}^{N} \alpha_T(j)$
   \end{itemize}
 \end{frame}
 
@@ -439,7 +442,7 @@
   \end{itemize}
 \end{frame}
 
-\section{Решение проблемы 2. Наиболее вероятная последовательность состояний модели}
+\section{Проблема 2. Наиболее вероятная последовательность состояний модели}
 \subsection{Индивидуально наиболее вероятные состояния}
 
 \begin{frame}
@@ -475,9 +478,10 @@
 
   \begin{itemize}
   \item Наиболее вероятная последовательность $\displaystyle Q = q_1, q_2, \ldots, q_T$ \pause
-  \item соответствующая $O = O_1, O_2, \ldots, O_T$
+  \item соответствующая $O = O_1, O_2, \ldots, O_T$ \pause
   \item $\displaystyle \delta_t(i) = \max_{q_1, q_2, \ldots, q_{t - 1}}{P[q_1\, q_2, \ldots, q_t = i, O_1\, O_2, \ldots, O_T|\lambda]}$
   \item $\psi_t(j)$ --- Массив аргументов, максимизирующих $\delta_t(j)$
+    %% Можно было бы ограничится только $\delta$, но использование дополнительного массива для максимизирующие аргументы --- это типичный трюк, используемый в динамическом программировании
   \end{itemize}
 
 \end{frame}
@@ -507,24 +511,147 @@
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   \begin{itemize}
-  \item $P^{\text{*}} = \max_{1 \le i \le N} \delta_T(i)$
+  \item $\displaystyle P^{\text{*}} = \max_{1 \le i \le N} \delta_T(i)$
     \pause
-  \item $q^{\text{*}}_T = \argmax_{1 \le i \le N} \delta_T(i)$
+  \item $\displaystyle q^{\text{*}}_T = \argmax_{1 \le i \le N} \delta_T(i)$ \pause
   \item Восстанавливаем путь: $q^{\text{*}}_t = \psi_{t + 1}(q^{\text{*}}_{t + 1}), \quad t = T - 1, T - 1, \ldots, 1$
   \item \pause
+    Схожесть алгоритмов
     \begin{itemize}
-    \item Алгоритм прямого обратного хода: $\sum$
+    \item Алгоритм прямого-обратного хода: $\sum$
     \item Алгоритм Витерби: $\max$
     \end{itemize}
 
   \end{itemize}
 \end{frame}
 
-\section{Оптимальные значения параметров модели}
+\section{Проблема 3. Оптимальные значения параметров модели}
+\subsection{}
+%% 3-ая и, наверное, самая сложная проблема
+
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+  \item Дана модель $\lambda = (A, B, \pi)$ \pause
+  \item Дана $O = O_1, O_2, \ldots, O_T$ \pause
+  \item Задача: максимизировать $P(O|\lambda)$
+  \end{itemize}
+\end{frame}
+
+\subsection{Алгоритм Баума-Уэлча}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+  \item $\xi_t(i, j) = P(q_t = S_i, q_{t + 1} = S_j | O, \lambda)$ \pause
+
+  \begin{align*}
+    \displaystyle \xi_t(i, j) &=
+    \frac{\alpha_t(i) a_{ij} b_j(O_{t + 1}) \beta_{t + 1}(j)}{P(O | \lambda)} \\
+    &= \frac{\alpha_t(i) a_{ij} b_j(O_{t + 1}) \beta_{t + 1}(j)}{\sum_{i = 1}^{N} \sum_{j = 1}^{N} \alpha_t(i) a_{ij} b_j(O_{t + 1}) \beta_{t + 1}(j)}
+  \end{align*}
+
+\item Числитель это просто $P(q_t = S_i, q_{t + 1} = S_j , O | \lambda)$ \pause
+  \item $\displaystyle \sum_{t = 1}^{T - 1} \xi_t(i, j)$ --- среднее количества переходов из $S_i$ в $S_j$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+
+  \begin{itemize}
+  \item $\displaystyle \gamma_t(i) = P(q_t = S_i | O, \lambda)$
+  \item $\displaystyle \sum_{t = 1}^{T - 1} \gamma_t(i) = P(q_t = S_i | O, \lambda)$ --- среднее количества переходов из $S_i$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  Переоценка $\pi_i$: \\
+  \begin{equation}
+    \overline{\pi}_i = \text{среднее количества раз находится в}\, S_i \, \text{при} \, (t = 1) = \gamma_1(i)
+  \end{equation}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  Переоценка $a_{ij}$: \\
+  \begin{align}
+    \overline{a}_{ij} &= \frac{\text{среднее количество переходов из}\, S_i \, \text{в} \, S_j}{\text{среднее количества переходов из} \, S_i} \nonumber \\
+     &= \frac{\sum_{t = 1}^{T - 1} \xi_t(i, j)}{\sum_{t = 1}^{T - 1} \gamma_t(i)}
+  \end{align}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  Переоценка $b_{i}(k)$: \\
+  \begin{align}
+    \overline{b}_{i}(k) &= \frac{\text{среднее количество раз нахождения в}\, S_i \text{, наблюдая} \, v_k}{\text{среднее количества раз нахождения в} \, S_i} \nonumber \\
+     &= \frac{\sum_{t = 1}^{T - 1}
+      \begin{cases}
+        \gamma_t(i) & O_t = v_k \\
+        0 & O_t \neq v_k
+      \end{cases}
+}{\sum_{t = 1}^{T - 1} \gamma_t(i)}
+  \end{align}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+    \framesubtitle{\insertsubsection}
+  Если параметры рассчитываются по приведенным формулам, то
+  \begin{enumerate}
+  \item Модель $\lambda = \{A, B, \pi\}$ является точкой экстремума функции правдоподобия и $\lambda = \overline{\lambda}$, где $ \overline{\lambda} = \{\overline{A}, \overline{B}, \overline{\pi}\}$
+  \item Модель $\overline{\lambda}$ более правдоподобна чем $\lambda$: $P(O | \lambda) < P(O | \overline{\lambda})$
+  \end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+
+  \begin{algorithm}[H]
+    \begin{algorithmic}[1]
+      \State $ Initiate \, \overline{\lambda} = \{\overline{A}, \overline{B}, \overline{\pi} \}$
+      \Do
+      \State $ \lambda = \overline{\lambda}$
+      \State $ \text{Reestimate} \, \overline{\lambda} = \{\overline{A}, \overline{B}, \overline{\pi}\} \, \text{from} \, \lambda \, \text{according to (1), (2), (3)} $
+      \doWhile{$|\overline{\lambda} - \lambda| < \epsilon$}
+    \end{algorithmic}
+  \end{algorithm}
+
+\end{frame}
+
+
 \subsection{Расчет значений параметров для случая непрерывного времени}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+
+  \begin{itemize}
+  \item $\displaystyle \overline{\mathbf{m}}_j = \frac{\sum_{t = 1}^{T} \gamma_t(j) \mathbf{o}_t}{\sum_{t = 1}^{T} \gamma_t(j)}$
+
+  \item $\displaystyle \overline{\Sigma}_j = \frac{\sum_{t = 1}^{T} \gamma_t(j) (\mathbf{o}_t - \overline{\mathbf{m}}_j)(\mathbf{o}_t - \overline{\mathbf{m}}_j)^T}{\sum_{t = 1}^{T} \gamma_t(j)}$
+  \end{itemize}
+
+\end{frame}
 
 \section{Виды скрытых марковских моделей}
 
 \section{Масштабирование значений вероятностей}
+%% Вот мы с вами и собрали всех покемнов вместе
 
 \end{document}
