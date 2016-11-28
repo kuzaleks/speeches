@@ -90,7 +90,7 @@
   \end{figure}
 \end{frame}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
     \framesubtitle{\insertsubsection}
   \begin{itemize}
@@ -104,7 +104,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
     \framesubtitle{\insertsubsection}
   \begin{itemize}
@@ -116,7 +116,7 @@
 
 \subsection{Конкретный пример}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
     \framesubtitle{\insertsubsection}
   \begin{itemize}
@@ -134,7 +134,7 @@
   \end{equation*}
 \end{frame}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
     \framesubtitle{\insertsubsection}
     \begin{figure}
@@ -206,7 +206,7 @@
         (B) edge[loop right]    node{$1 - P(H)$}      (B)
         edge[bend left,above]     node{$P(H)$}         (A);
       \end{tikzpicture}
-    \end{center}  
+    \end{center}
   \end{figure} \pause
   \begin{equation*}
     \begin{matrix}
@@ -231,7 +231,7 @@
         (B) edge[loop right]    node{$a_{22}$}      (B)
         edge[bend left,above]     node{$1 - a_{22}$}         (A);
       \end{tikzpicture}
-    \end{center}  
+    \end{center}
   \end{figure} \pause
   \begin{equation*}
     \begin{matrix}
@@ -247,7 +247,7 @@
   \end{equation*}
 \end{frame}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
     \framesubtitle{\insertsubsection}
     \begin{figure}
@@ -271,7 +271,7 @@
     $P(H) = P_1 \qquad P(H) = P_2  \qquad P(H) = P_3 $ \\
     $ P(T) = 1 - P_1 \qquad P(T) = 1 - P_2 \qquad P(T) = 1 - P_3 $
     \pause
-    
+
     $\displaystyle
     \begin{matrix}
       O & = & H & H & T & H & T & T & H & \ldots \\
@@ -283,7 +283,7 @@
 
 \subsection{Предварительные примеры. Карзины с шарами}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
 
@@ -294,19 +294,19 @@
       $P(\text{BLUE}) = b_1(2)$ & $P(\text{BLUE}) = b_2(2)$ & $P(\text{BLUE}) = b_3(2)$ \\
       $P(\text{GREEN}) = b_1(3)$ & $P(\text{GREEN}) = b_2(3)$ & $P(\text{GREEN}) = b_3(3)$ \\
       \vdots & \vdots & \vdots \\
-      $P(\text{BLACK}) = b_1(M)$ & $P(\text{BLACK}) = b_2(M)$ & $P(\text{BLACK}) = b_3(M)$ \\ 
+      $P(\text{BLACK}) = b_1(M)$ & $P(\text{BLACK}) = b_2(M)$ & $P(\text{BLACK}) = b_3(M)$ \\
     \end{tabular}
   \end{table}
-  
+
   \begin{equation*}
-  O = \text{GREEN},  \text{BLACK}, \text{BLUE}, \text{RED}, \text{RED}, \ldots, \text{BLUE}    
+  O = \text{GREEN},  \text{BLACK}, \text{BLUE}, \text{RED}, \text{RED}, \ldots, \text{BLUE}
   \end{equation*}
 
 \end{frame}
 
 \subsection{Ингредиенты}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   %% Любая теория начинается с базовых понятий (или с проблемы)
@@ -333,7 +333,7 @@
 \subsection{Проблема 1}
 %% Задачка, которую надо решить поскольку очень нужен ответ
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   \begin{itemize}
@@ -346,7 +346,7 @@
 
 \subsection{Проблема 2}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   \begin{itemize}
@@ -358,7 +358,7 @@
 
 \subsection{Проблема 3}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   \begin{itemize}
@@ -371,7 +371,7 @@
 \section{Решение проблемы 1. Вероятность появления последовательности}
 \subsection{Первая попытка}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   \begin{itemize}
@@ -387,7 +387,7 @@
 
 \subsection{Первая попытка. Проблема со сложностью алгоритма}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   \begin{itemize}
@@ -399,7 +399,7 @@
 
 \subsection{Алгоритм прямого-обратного хода}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   \begin{itemize}
@@ -412,7 +412,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   \begin{itemize}
@@ -420,7 +420,7 @@
     \pause
   \item Базис: $ \beta_T(i) = 1, \qquad 1 \le i \le N$
   \item Шаг индукции: $\displaystyle \beta_{t}(i) = \sum_{j = 1}^{N} a_{ij} b_{j}(O_{t + 1})\beta_{t + 1}(j)$ \\
-    $t = T - 1, T - 1, \ldots, 1, 1 \le i \le N$
+    $t = T - 1, T - 2, \ldots, 1, 1 \le i \le N$
     \pause
   \item $\displaystyle P(O|\lambda) = \sum_{j = 1}^{N} \alpha_T(j)$
   \end{itemize}
@@ -428,7 +428,7 @@
 
 \subsection{Алгоритм прямого-обратного хода. Сложность}
 
-\begin{frame} 
+\begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   \begin{itemize}
@@ -445,7 +445,7 @@
 \begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
-  
+
   \begin{itemize}
   \item $\displaystyle \gamma_t(i) = P(q_t = S_i | O, \lambda)$ \pause
   \item $\displaystyle \gamma_t(i) = \frac{\alpha_t(i) \beta_t(i)}{P(O | \lambda)} = \frac{\alpha_t(i) \beta_t(i)}{\sum_{i = 1}^{N} \alpha_t(i) \beta_t(i)}$
@@ -458,7 +458,7 @@
 \begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
-  
+
   \begin{itemize}
   \item $\displaystyle q_t = \argmax_{1 \le i \le N}{[\gamma_t(i)]}, \qquad 1 \le t \le T$
     \item Решением является наиболее вероятное состояние в \alert{данный конкретный момент времени} без учета вероятности \alert{последовательности состояний}
@@ -466,19 +466,59 @@
 
 \end{frame}
 
-\subsection{Наиболее вероятная последовательность состояний}
+\subsection{Наиболее вероятная последовательность состояний. Алгоритм Витерби}
+%% Один из любимых алгоритмов Питера Норвига. Динамическое программирование.
+
 \begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
-  
+
   \begin{itemize}
   \item Наиболее вероятная последовательность $\displaystyle Q = q_1, q_2, \ldots, q_T$ \pause
   \item соответствующая $O = O_1, O_2, \ldots, O_T$
   \item $\displaystyle \delta_t(i) = \max_{q_1, q_2, \ldots, q_{t - 1}}{P[q_1\, q_2, \ldots, q_t = i, O_1\, O_2, \ldots, O_T|\lambda]}$
+  \item $\psi_t(j)$ --- Массив аргументов, максимизирующих $\delta_t(j)$
   \end{itemize}
 
 \end{frame}
 
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+  \item Базис:
+    \begin{itemize}
+      \item $ \delta_1(i) = \pi_i b_i(O_1), \qquad 1 \le i \le N$ \\
+      \item $\psi_1(i) = 0$
+    \end{itemize}
+    \pause
+  \item Шаг индукции:
+    \begin{itemize}
+      \item $\displaystyle \delta_{t}(i) = \max_{1 \le j \le N}[\delta_{t - 1}(j) a_{ji}]b_{i}(O_{t})$
+    $t = 2, 3, \ldots, T, \qquad 1 \le i \le N$ \\
+        \pause
+      \item $\displaystyle \psi_{t}(i) = \argmax_{1 \le j \le N}[\delta_{t - 1}(j) a_{ji}]$
+        $t = 2, 3, \ldots, T, \qquad 1 \le i \le N$
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+  \item $P^{\text{*}} = \max_{1 \le i \le N} \delta_T(i)$
+    \pause
+  \item $q^{\text{*}}_T = \argmax_{1 \le i \le N} \delta_T(i)$
+  \item Восстанавливаем путь: $q^{\text{*}}_t = \psi_{t + 1}(q^{\text{*}}_{t + 1}), \quad t = T - 1, T - 1, \ldots, 1$
+  \item \pause
+    \begin{itemize}
+    \item Алгоритм прямого обратного хода: $\sum$
+    \item Алгоритм Витерби: $\max$
+    \end{itemize}
+
+  \end{itemize}
+\end{frame}
 
 \section{Оптимальные значения параметров модели}
 \subsection{Расчет значений параметров для случая непрерывного времени}
