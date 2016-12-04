@@ -27,7 +27,7 @@
 
 \begin{frame} \label{cont}
   \frametitle{\insertsection}
-  
+
   \begin{enumerate}
     \item Понять суть метода, позволяющего распознавать \pause
   \item Баланс между интуитивным пониманием и математическими формулировками \pause
@@ -80,9 +80,9 @@
 \begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
-  
+
   \begin{center}
-  Теория вероятности как аппарат для описания закономерность в случайных событиях. 
+  Теория вероятности как аппарат для описания закономерность в случайных событиях.
   \end{center} \pause
   \begin{itemize}
   \item Случайный вектор: $ \mathbf{X} = [\mathbf{x}_0\, \mathbf{x}_1 \ldots \mathbf{x}_{N - 1}]^T $
@@ -97,9 +97,9 @@
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   \begin{equation*}
-   P(x_1, \ldots, x_n) = Pr\{\mathbf{x}_1 \le x_1, \ldots \mathbf{x}_n \le x_n \} 
+   P(x_1, \ldots, x_n) = Pr\{\mathbf{x}_1 \le x_1, \ldots \mathbf{x}_n \le x_n \}
   \end{equation*}
-  
+
   \begin{align*}
     p(X) &=
     \lim_{\Delta X \rightarrow 0}
@@ -109,7 +109,7 @@
          {\Delta x_1 \, \ldots \, \Delta x_n} \\
          &= \partial^n P(X) / \partial x_1 \, \ldots \, \partial x_n
   \end{align*}
-  
+
   \begin{equation*}
    P(X) = \int_{-\infty}^{X} p(Y) dY = \int_{-\infty}^{x_1} \, \ldots \int_{-\infty}^{x_n} p(y_1, \ldots, y_n) d y_1 \, \ldots \, y_n
   \end{equation*}
@@ -122,7 +122,7 @@
 \begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
-  
+
   \begin{equation*}
     M = E\{ \mathbf{X} \} = \int X p(X) dX
   \end{equation*}
@@ -158,13 +158,13 @@
       \begin{bmatrix}
         (\mathbf{x_1} - m_1)(\mathbf{x_1} - m_1) & \ldots & (\mathbf{x_1} - m_1)(\mathbf{x_n} - m_n)\\
         \vdots & &\\
-        (\mathbf{x_n} - m_n)(\mathbf{x_1} - m_1) & \ldots & (\mathbf{x_n} - m_n)(\mathbf{x_n} - m_n) 
+        (\mathbf{x_n} - m_n)(\mathbf{x_1} - m_1) & \ldots & (\mathbf{x_n} - m_n)(\mathbf{x_n} - m_n)
       \end{bmatrix}
       \right\} =\\
       \begin{bmatrix}
         E\{(\mathbf{x_1} - m_1)(\mathbf{x_1} - m_1)\} & \ldots & E\{(\mathbf{x_1} - m_1)(\mathbf{x_n} - m_n)\}\\
         \vdots & &\\
-        E\{(\mathbf{x_n} - m_n)(\mathbf{x_1} - m_1)\} & \ldots & E\{(\mathbf{x_n} - m_n)(\mathbf{x_n} - m_n)\} 
+        E\{(\mathbf{x_n} - m_n)(\mathbf{x_1} - m_1)\} & \ldots & E\{(\mathbf{x_n} - m_n)(\mathbf{x_n} - m_n)\}
       \end{bmatrix}
   \end{multline*}
 
@@ -175,7 +175,7 @@
 \begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
-  
+
   \begin{equation*}
     N_X(M, \Sigma) = \frac{1}{(2 \pi )^{n/2} | \Sigma |^{1/2} }
     \exp(-\frac{1}{2} d^2(X))
@@ -191,7 +191,6 @@
     \item $tr\{M\}$ --- след матрицы
     \item $h_{ij}$ --- диагональный элемент матрицы $\Sigma$
   \end{itemize}
-
 
 \end{frame}
 
@@ -216,7 +215,7 @@
 \begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
-  \includegraphics[width=0.8\textwidth]{normal.eps}  
+  \includegraphics[width=0.8\textwidth]{normal.eps}
 \end{frame}
 
 \section{Байесовский классификатор}
@@ -226,14 +225,14 @@
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
   %% Для понимания рассматриваем самый простой вариант проблемы
-  
+
   \begin{itemize}
     \item есть два класса: $\omega_1$ и $\omega_2$ \pause
     \item распределение плотности вероятности известно для каждого из них \pause
     \item дан произвольный вектор $X$
   \end{itemize}
   Необходимо определить к какому из двух классов относится вектор $X$!
-  
+
 \end{frame}
 
 \begin{frame}
@@ -254,7 +253,7 @@
 \begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
-  
+
   \begin{itemize}
   \item $\displaystyle P(\omega_i | X) = \frac{P(X | \omega_i) P(\omega_i)}{P(X)} $ \pause
   \item $\displaystyle
@@ -281,7 +280,7 @@
 \begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
-  
+
   \begin{multline*}
     h(X) = -\ln \ell(X) =\\
     \frac12 (X - M_1)^T \Sigma_1^{-1}(X - M_1)\\
@@ -293,7 +292,110 @@
 \begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
-  \includegraphics[width=0.8\textwidth]{border.eps}  
+  \includegraphics[width=0.8\textwidth]{border.eps}
+\end{frame}
+
+\section{Оценка параметров распределения}
+
+
+\begin{frame}
+  \frametitle{\insertsection}
+
+  \begin{itemize}
+  \item Функция случайного вектора $\mathbf{y} = f(\mathbf{x_1}, \ldots, \mathbf{x_n})$
+  \item Моменты: $m_y = E\{\mathbf{y}\}$, $\sigma_y^2 = Var\{\mathbf{y}\}$
+  \end{itemize} \pause
+  На практике:
+
+  \begin{itemize}
+    \item Аналитический вид плотности распределения вероятности $\mathbf{y}$ не известен
+    \item Слишком сложный для теоретических расчетов
+  \end{itemize}
+
+\end{frame}
+
+%% TODO Вставить слайды с выводом формулы оценки для матожидания
+
+%% \section{Метод максимального правдоподобия}
+
+%% \begin{frame}
+%%   \frametitle{\insertsection}
+%%   Фишер Р.А.
+%%   ``нет ничего проще, чем придумать оценку параметра''
+
+%% \end{frame}
+
+
+\subsection{Математическое ожидание}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+    Фишер Р.А.
+  ``нет ничего проще, чем придумать оценку параметра'' \pause
+
+  \begin{equation*}
+   \displaystyle \mathbf{\widehat{m}}_y = \frac{1}{N} \sum_{k = 1}^{N} \mathbf{y}_k, \qquad \mathbf{y}_k = y(\mathbf{X}_k)
+  \end{equation*} \pause
+
+  \begin{align*}
+    E\{\mathbf{\widehat{m}}_y\}
+    &= \frac{1}{N} \sum_{k = 1}^{N} E\{ \mathbf{y}_k \} \\
+    &= \frac{1}{N} \sum_{k = 1}^{N} m_y = m_y,
+  \end{align*}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{\insertsection}
+  В большинстве случаев нас интересуют выборочное среднее и выборочная матрица корреляции
+
+  \begin{equation*}
+    \mathbf{\widehat{M}} = \frac{1}{N} \sum_{k = 1}^{N} \mathbf{X}_k
+  \end{equation*}
+
+  \begin{equation*}
+    \mathbf{\widehat{S}} = \frac{1}{N} \sum_{k = 1}^{N} \mathbf{X}_k \cdot \mathbf{X}_k^T
+  \end{equation*}
+
+  Обе оценки являются \alert{несмещенными}
+
+\end{frame}
+
+\subsection{Матрица ковариации}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+
+  \begin{itemize}
+  \item Компонент $\Sigma$: $\mathbf{y} = (\mathbf{x}_i - m_i)(\mathbf{x}_j - m_j)$ \pause
+  \item Значения $m_i$ и $m_j$ не известны \pause
+  \item Оценка компонента $\Sigma$: $\mathbf{y} = (\mathbf{x}_i - \mathbf{\widehat{m}}_i)(\mathbf{x}_j - \mathbf{\widehat{m}}_j)$
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{equation*}
+    \widehat{\Sigma} = \frac{1}{N - 1} \sum_{k = 1}^N (\mathbf{X}_k - \mathbf{\widehat{M}})(\mathbf{X}_k - \mathbf{\widehat{M}})
+  \end{equation*}
+
+\end{frame}
+
+\subsection{Обучение модели с нормальным распределением}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+  \item $\displaystyle \mathbf{\widehat{M}} = \frac{1}{N} \sum_{k = 1}^{N} \mathbf{X}_k$
+  \item $\displaystyle \widehat{\Sigma} = \frac{1}{N - 1} \sum_{k = 1}^N (\mathbf{X}_k - \mathbf{\widehat{M}})(\mathbf{X}_k - \mathbf{\widehat{M}}) $
+  \end{itemize}
+
 \end{frame}
 
 \end{document}
